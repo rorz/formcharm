@@ -9,7 +9,7 @@ export default class FormCharm extends React.Component {
 
     submit() {
 
-        restler.post('https://api.formcharm.com/1/functions/submit', {
+        Restler.post('https://api.formcharm.com/1/functions/submit', {
             headers: {
                 'Content-Type': 'application/json',
                 'X-Parse-Application-Id': '7Lvyr951Bg'
@@ -22,8 +22,8 @@ export default class FormCharm extends React.Component {
                 inbox: this.props.inbox
             }
         }).on('complete', function(data, response) {
-            if (response.statusCode == 200) {
-                if (data.result == 'SENT') {
+            if (response.statusCode === 200) {
+                if (data.result === 'SENT') {
                     // Send success
                     this.props.callback()
                 } else {
