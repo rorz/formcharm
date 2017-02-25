@@ -9,18 +9,22 @@ export default class FormCharm extends React.Component {
 
     submit() {
 
+        const submissionData = {
+            data: this.props.data,
+            replyTo: this.props.replyTo,
+            sendCopy: this.props.sendCopy,
+            formName: this.props.formName,
+            inbox: this.props.inbox
+        }
+
+        console.log('Submission Data: %s' , JSON.stringify(submissionData))
+
         Restler.post('https://api.formcharm.com/1/functions/submit', {
             headers: {
                 'Content-Type': 'application/json',
                 'X-Parse-Application-Id': '7Lvyr951Bg'
             },
-            data: {
-                data: this.props.data,
-                replyTo: this.props.replyTo,
-                sendCopy: this.props.sendCopy,
-                formName: this.props.formName,
-                inbox: this.props.inbox
-            }
+            data: JSON.stringify(submissionData)
         }).on('complete', function(data, response) {
             if (response.statusCode === 200) {
                 if (data.result === 'SENT') {

@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "react": "^15.4.2",
+    "react-addons-update": "^15.4.2",
     "react-dom": "^15.4.2",
     "restler": "^3.4.0"
   },

@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
+import Update from 'react-addons-update'
 import './App.css';
 import FormCharm from './FormCharm.jsx'
 
-class App extends Component {
+export default class App extends Component {
 
     constructor(props) {
         super(props)
@@ -18,9 +19,10 @@ class App extends Component {
     updateFormComponent(event, keyName) {
         const inputValue = event.target.value
 
-        this.setState({
-            formFields[keyName]: inputValue
-        })
+        // http://stackoverflow.com/questions/35902946/reactjs-setstate-with-a-dynamic-key-value/35903522
+        this.setState(Update(this.state, {
+            formFields: {[keyName]:{$set:inputValue}}
+        }))
     }
 
     render() {
