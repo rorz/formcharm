@@ -2,10 +2,6 @@ import React from 'react'
 import Restler from 'restler'
 
 export default class FormCharm extends React.Component {
-    constructor(props) {
-        super(props)
-        // this.state = {}
-    }
 
     submit() {
 
@@ -16,8 +12,6 @@ export default class FormCharm extends React.Component {
             formName: this.props.formName,
             inbox: this.props.inbox
         }
-
-        console.log('Submission Data: %s' , JSON.stringify(submissionData))
 
         Restler.post('https://api.formcharm.com/1/functions/submit', {
             headers: {
@@ -34,8 +28,7 @@ export default class FormCharm extends React.Component {
                     // Odd error
                 }
             } else {
-                // Was most likely an error
-                // Handle it
+                // Handle the error
             }
         });
 
@@ -54,8 +47,8 @@ FormCharm.propTypes = {
     callback: React.PropTypes.object,
     style: React.PropTypes.object,
     data: React.PropTypes.object,
-    replyTo: React.PropTypes.boolean,
-    sendCopy: React.PropTypes.boolean,
+    replyTo: React.PropTypes.bool,
+    sendCopy: React.PropTypes.bool,
     inbox: React.PropTypes.string,
     formName: React.PropTypes.string
 }
