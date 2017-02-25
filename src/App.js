@@ -14,6 +14,8 @@ export default class App extends Component {
                 question: ''
             }
         }
+
+        this.handleSubmission = this.handleSubmission.bind(this)
     }
 
     updateFormComponent(event, keyName) {
@@ -23,6 +25,11 @@ export default class App extends Component {
         this.setState(Update(this.state, {
             formFields: {[keyName]:{$set:inputValue}}
         }))
+    }
+
+    handleSubmission(result) {
+        console.log('callback')
+        alert('Submitted success/fail-fully');
     }
 
     render() {
@@ -35,8 +42,9 @@ export default class App extends Component {
                     <input type="text" placeholder="name" onChange={(event, value) => this.updateFormComponent(event, 'name')} />
                     <input type="email" placeholder="email" onChange={(event, value) => this.updateFormComponent(event, 'email')} />
                     <input type="textarea" placeholder="question" onChange={(event, value) => this.updateFormComponent(event, 'question')} />
+                    <input type="textarea" placeholder="playboy level" onChange={(event, value) => this.updateFormComponent(event, 'playboyLevel')} />
 
-                    <FormCharm inbox="rory@johnstoneek.com" formName="FormCharm Example" data={this.state.formFields} className="formCharm" replyTo={true} sendCopy={true}>
+                    <FormCharm inbox="rory@johnstoneek.com" formName="FormCharm Example" data={this.state.formFields} className="formCharm" replyTo={true} sendCopy={true} callback={this.handleSubmission}>
                         <a>Submit To FormCharm!</a>
                     </FormCharm>
                 </div>

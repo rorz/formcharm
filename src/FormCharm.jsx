@@ -13,6 +13,8 @@ export default class FormCharm extends React.Component {
             inbox: this.props.inbox
         }
 
+        const callback = this.props.callback || null
+
         Restler.post('https://api.formcharm.com/1/functions/submit', {
             headers: {
                 'Content-Type': 'application/json',
@@ -21,9 +23,9 @@ export default class FormCharm extends React.Component {
             data: JSON.stringify(submissionData)
         }).on('complete', function(data, response) {
             if (response.statusCode === 200) {
-                if (data.result === 'SENT') {
+                if (data.result === 'MESSAGE_SEND_OK') {
                     // Send success
-                    this.props.callback()
+                    if (callback) {callback()}
                 } else {
                     // Odd error
                 }
