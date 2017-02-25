@@ -47,13 +47,16 @@ export default class FormCharm extends React.Component {
 
 FormCharm.propTypes = {
     callback: React.PropTypes.func,
+
     style: React.PropTypes.object,
     className: React.PropTypes.string,
-    data: React.PropTypes.object,
-    submitter: React.PropTypes.string,
-    replyTo: React.PropTypes.bool,
-    sendConfirmation: React.PropTypes.bool
-    sendCopies: React.PropTypes.object,
+
     inbox: React.PropTypes.string,
-    formName: React.PropTypes.string
+    formName: React.PropTypes.string,
+    sendCopies: React.PropTypes.object,
+    replyTo: React.PropTypes.bool,
+
+    submitter: React.PropTypes.string,
+    data: React.PropTypes.object,
+    sendConfirmation: React.PropTypes.bool
 }
