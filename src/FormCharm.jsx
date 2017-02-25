@@ -50,8 +50,10 @@ FormCharm.propTypes = {
     style: React.PropTypes.object,
     className: React.PropTypes.string,
     data: React.PropTypes.object,
+    submitter: React.PropTypes.string,
     replyTo: React.PropTypes.bool,
-    sendCopy: React.PropTypes.bool,
+    sendConfirmation: React.PropTypes.bool
+    sendCopies: React.PropTypes.object,
     inbox: React.PropTypes.string,
     formName: React.PropTypes.string
 }
