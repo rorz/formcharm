@@ -44,7 +44,7 @@ export default class FormCharm extends React.Component {
 }
 
 FormCharm.propTypes = {
-    callback: React.PropTypes.object,
+    callback: React.PropTypes.func,
     style: React.PropTypes.object,
     data: React.PropTypes.object,
     replyTo: React.PropTypes.bool,
