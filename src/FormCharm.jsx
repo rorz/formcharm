@@ -36,7 +36,7 @@ export default class FormCharm extends React.Component {
 
     render() {
         return (
-            <div onClick={() => this.submit()} style={this.props.style}>
+            <div onClick={() => this.submit()} style={this.props.style} className={this.props.className}>
                 {this.props.children}
             </div>
         )
@@ -46,6 +46,7 @@ export default class FormCharm extends React.Component {
 FormCharm.propTypes = {
     callback: React.PropTypes.func,
     style: React.PropTypes.object,
+    className: React.PropTypes.string,
     data: React.PropTypes.object,
     replyTo: React.PropTypes.bool,
     sendCopy: React.PropTypes.bool,

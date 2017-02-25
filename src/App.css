@@ -9,13 +9,28 @@
 
 .App-header {
   background-color: #222;
-  height: 150px;
+  height: 80px;
   padding: 20px;
   color: white;
 }
 
 .App-intro {
   font-size: large;
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.formCharm {
+    background-color: #222;
+    color: #eee;
+    padding: 5px;
+    margin-top: 20px;
 }
 
 @keyframes App-logo-spin {
