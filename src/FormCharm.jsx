@@ -7,6 +7,7 @@ export default class FormCharm extends React.Component {
 
         const submissionData = {
             data: this.props.data,
+            submitter: this.props.submitter,
             replyTo: this.props.replyTo,
             sendCopies: this.props.sendCopies,
             formName: this.props.formName,
@@ -47,7 +48,7 @@ export default class FormCharm extends React.Component {
 
 FormCharm.propTypes = {
     // Event Handling:
-    callback: React.PropTypes.func, // Callback upon request returning
+    callback: React.PropTypes.func, // Callback upon request returning — sends a response and an error object (if necessary)
 
     // Styling:
     style: React.PropTypes.object, // Style props passed to the wrapper
