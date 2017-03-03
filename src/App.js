@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Update from 'react-addons-update'
 import './App.css';
 import FormCharm from './FormCharm.jsx'
+import logo from './logo-spaced.png'
 
 export default class App extends Component {
 
@@ -11,8 +12,8 @@ export default class App extends Component {
             formFields: {
                 name: '',
                 email: '',
-                question: '',
-                'Lorem ipsum, time to go to the tripsome yeah yeah yeah': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+                favoriteAnimal: '',
+                question: ''
             }
         }
 
@@ -28,22 +29,44 @@ export default class App extends Component {
         }))
     }
 
-    handleSubmission(result) {
-        console.log('callback')
-        alert('Submitted success/fail-fully');
+    handleSubmission(result, error) {
+        if (error) {
+            // handle error here
+        }
+        else {
+            // handle success here
+            alert('Submitted successfully');
+        }
     }
 
     render() {
         return (
             <div className="App">
-                <div className="App-header">
-                    <h2>FormCharm Example</h2>
-                </div>
+                <img src={logo} width="200" />
                 <div className="formContainer">
-                    <input type="text" placeholder="name" onChange={(event, value) => this.updateFormComponent(event, 'name')} />
-                    <input type="email" placeholder="email" onChange={(event, value) => this.updateFormComponent(event, 'email')} />
-                    <input type="textarea" placeholder="question" onChange={(event, value) => this.updateFormComponent(event, 'question')} />
-                    <input type="textarea" placeholder="playboy level" onChange={(event, value) => this.updateFormComponent(event, 'playboyLevel')} />
+                    <div className="formInput">
+                        <h3>Name:</h3>
+                        <input type="text" placeholder="Janette Johnson" onChange={(event, value) => this.updateFormComponent(event, 'name')} />
+                    </div>
+                    <div className="formInput">
+                        <h3>Email:</h3>
+                        <input type="email" placeholder="janette.johnson@example.com" onChange={(event, value) => this.updateFormComponent(event, 'email')} />
+                    </div>
+                    <div className="formInput">
+                        <h3>Favorite Animal:</h3>
+                        <select onChange={(event, value) => this.updateFormComponent(event, 'favoriteAnimal')}>
+                            <option value="" disabled selected>Choose One</option>
+                            <option value="cat">Cat</option>
+                            <option value="dog">Dog</option>
+                            <option value="emu">Emu</option>
+                            <option value="penguin">Penguin</option>
+                            <option value="other">Not Listed</option>
+                        </select>
+                    </div>
+                    <div className="formInput">
+                        <h3>Question:</h3>
+                        <textarea placeholder="Enter details of your query here." onChange={(event, value) => this.updateFormComponent(event, 'question')} />
+                    </div>
 
                     <FormCharm inbox="rory@apollo27.com" formName="FormCharm Example" data={this.state.formFields} className="formCharm" submitter={this.state.formFields.email} replyTo={true} callback={this.handleSubmission}>
                         <a>Submit To FormCharm!</a>

@@ -1,17 +1,6 @@
 .App {
   text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 80px;
-  padding: 20px;
-  color: white;
+  padding-top: 40px;
 }
 
 .App-intro {
@@ -27,13 +16,53 @@
 }
 
 .formCharm {
-    background-color: #222;
-    color: #eee;
-    padding: 5px;
+    background-color: #fff;
+    color: #34CA86;
+    padding: 10px;
     margin-top: 20px;
+    border: 2px solid #34CA86;
+    border-radius: 10px;
+    cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.formCharm:hover {
+    color: #fff;
+    background-color: #34CA86;
+}
+
+.formInput {
+    width: 200px;
+}
+
+.formInput input {
+    border: 1px solid #eee;
+    width: 200px;
+    padding: 6px;
+}
+
+.formInput textarea {
+    border: 1px solid #eee;
+    width: 200px;
+    padding: 6px;
+}
+
+.formInput select {
+    width: 200px;
+    padding: 6px;
+    height: 30px;
+}
+
+.formInput h3 {
+    font-size: 14px;
+    font-weight: 400;
+    font-family: Helvetica, Arial, sans-serif;
+    color: #555;
+    margin-bottom: 2px;
+    text-align: left;
+}
+
+textarea:focus, input:focus, input[type]:focus, select:focus, .uneditable-input:focus {
+    border-color: RGBA(52, 202, 134, 1.00);
+    box-shadow: 0 1px 1px RGBA(52, 202, 134, 0.075) inset, 0 0 8px RGBA(52, 202, 134, 0.6);
+    outline: 0 none;
 }
