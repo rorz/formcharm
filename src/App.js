@@ -13,7 +13,8 @@ export default class App extends Component {
                 name: '',
                 email: '',
                 favoriteAnimal: '',
-                question: ''
+                question: '',
+                updateThem: ''
             }
         }
 
@@ -35,7 +36,7 @@ export default class App extends Component {
         }
         else {
             // handle success here
-            alert('Submitted successfully');
+            alert('CALLBACK: Submitted successfully');
         }
     }
 
@@ -43,6 +44,7 @@ export default class App extends Component {
         return (
             <div className="App">
                 <img src={logo} width="200" />
+                <h2><i>Demo</i></h2>
                 <div className="formContainer">
                     <div className="formInput">
                         <h3>Name:</h3>
@@ -67,10 +69,23 @@ export default class App extends Component {
                         <h3>Question:</h3>
                         <textarea placeholder="Enter details of your query here." onChange={(event, value) => this.updateFormComponent(event, 'question')} />
                     </div>
+                    <div className="formInput noWidth">
+                        <h3>Receive Updates?</h3>
+                        <input type="checkbox" onChange={(event, value) => this.updateFormComponent(event, 'updateThem')} />
+                    </div>
 
                     <FormCharm inbox="rory@apollo27.com" formName="FormCharm Example" data={this.state.formFields} className="formCharm" submitter={this.state.formFields.email} replyTo={true} callback={this.handleSubmission}>
                         <a>Submit To FormCharm!</a>
                     </FormCharm>
+
+                    <hr className="divider"/>
+                    <p className="description">
+                        Use this demo to see how you can use FormCharm with ReactJS.
+                        <br /><br />
+                        The only part of this form that uses the FormCharm component is the 'Submit' button — which is wrapped in <span className="code">FormCharm</span> tags, and where the necessary props are provided.
+                        <br /><br />
+                        The <span className="code">data</span> prop of the FormCharm component is derived from the App's state, which stores the current values of all the inputs on the page.
+                    </p>
                 </div>
             </div>
         )

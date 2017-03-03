@@ -7,12 +7,26 @@
   font-size: large;
 }
 
+h2 {
+    font-size: 18px;
+    font-weight: 400;
+    color: #aaa;
+    font-family: Helvetica, Arial, sans-serif;
+    margin: 0;
+}
+
 .formContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     margin-top: 10px;
+}
+
+textarea:focus, input:focus, input[type]:focus, select:focus, .uneditable-input:focus {
+    border-color: RGBA(52, 202, 134, 1.00);
+    box-shadow: 0 1px 1px RGBA(52, 202, 134, 0.075) inset, 0 0 8px RGBA(52, 202, 134, 0.6);
+    outline: 0 none;
 }
 
 .formCharm {
@@ -40,6 +54,12 @@
     padding: 6px;
 }
 
+.formInput.noWidth input {
+    border-color: none;
+    box-shadow: none;
+    outline: 0 none;
+}
+
 .formInput textarea {
     border: 1px solid #eee;
     width: 200px;
@@ -61,8 +81,25 @@
     text-align: left;
 }
 
-textarea:focus, input:focus, input[type]:focus, select:focus, .uneditable-input:focus {
-    border-color: RGBA(52, 202, 134, 1.00);
-    box-shadow: 0 1px 1px RGBA(52, 202, 134, 0.075) inset, 0 0 8px RGBA(52, 202, 134, 0.6);
-    outline: 0 none;
+.divider {
+    border: 1px solid #ccc;
+    margin-top: 50px;
+    width: 300px;
+}
+
+.description {
+    margin-top: 10px;
+    padding: 20px 5px;
+    border: 2px solid #ccc;
+    background-color: #fffeee;
+    width: 400px;
+    font-size: 12px;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.code {
+    font-family: 'Courier New', Courier, monospace;
+    color: #4D4356;
+    background-color: #fff;
 }
