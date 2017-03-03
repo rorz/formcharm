@@ -3,15 +3,18 @@ import './App.css';
 import FormCharm from './FormCharm.jsx'
 import logo from './logo-spaced.png'
 
+// For Demo text
+import Update from 'react-addons-update'
+
 class ExampleForm extends Component {
     constructor(props) {
         super(props)
         this.state = {
-                name: '',
-                email: '',
-                favoriteAnimal: '',
-                question: '',
-                updateThem: ''
+            name: '',
+            email: '',
+            favoriteAnimal: '',
+            question: '',
+            updateThem: ''
         }
 
         this.handleSubmission = this.handleSubmission.bind(this)
@@ -19,17 +22,10 @@ class ExampleForm extends Component {
 
     updateFormComponent(event, keyName) {
         const inputValue = event.target.value
-        this.setState({
-            [keyName]: inputValue
-        })
+        this.setState({[keyName]: inputValue})
 
         //  this is not necessary in standard implementation (used for demo text)
         this.props.updateParent(keyName, inputValue)
-
-    }
-
-    updateParent() {
-        console.log(this.state)
 
     }
 
@@ -89,6 +85,9 @@ class ExampleForm extends Component {
     }
 }
 
+//
+// -- DEMO  TEXT etc --  NOT NECESSARY FOR IMPLEMENTATION //
+
 export default class App extends Component {
 
     constructor(props) {
@@ -98,6 +97,16 @@ export default class App extends Component {
         }
     }
 
+    updateFormState(keyName, inputValue) {
+        // http://stackoverflow.com/questions/35902946/reactjs-setstate-with-a-dynamic-key-value/35903522
+        this.setState(Update(this.state, {
+            formFields: {
+                [keyName]: {
+                    $set: inputValue
+                }
+            }
+        }))
+    }
 
     render() {
 
@@ -108,42 +117,50 @@ export default class App extends Component {
         for (const key in formFields) {
             if (formFields.hasOwnProperty(key)) {
                 displayFields.push(
-                    <p><strong>{key}</strong>: {formFields[key]}</p>
+                    <p>
+                        <strong>{key}</strong>: {formFields[key]}</p>
                 )
             }
         }
 
-
         return (
             <div className="App">
-                <ExampleForm updateParent={(state) => console.log(state)} />
+                <ExampleForm updateParent={(keyName, inputValue) => this.updateFormState(keyName, inputValue)}/>
                 <div className="description">
                     <p>
                         <strong>SET THE 'INBOX' PROP ON FORMCHARM COMPONENT TO TEST</strong>
-                        <br />
-                        <br />
-                        <br />
+                        <br/>
+                        <br/>
+                        <br/>
                         Use this demo to see how you can use FormCharm with ReactJS.
                         <br/><br/>
                         The only part of this form that uses the FormCharm component is the 'Submit' button — which is wrapped in
-                        <span className="code"> FormCharm </span>
+                        <span className="code">
+                            FormCharm
+                        </span>
                         tags, and where the necessary props are provided.
                         <br/><br/>
                         The
-                        <span className="code"> data </span>
+                        <span className="code">
+                            data
+                        </span>
                         prop of the FormCharm component is derived from the App's state, which stores the current values of all the inputs on the page.
                         <br/><br/>
                         You should update the App's state with the
-                        <span className="code"> onChange </span>
+                        <span className="code">
+                            onChange
+                        </span>
                         method prop of every one of your inputs.
                     </p>
-                    <hr />
+                    <hr/>
                     <p>
-                        <strong>Current App state</strong> (passed as 'data' to FormCharm)
+                        <strong>Current App state</strong>
+                        (passed as 'data' to FormCharm)
                         <br/>
-                        <br />
+                        <br/>
 
-                        <strong>formFields</strong> {'{'}
+                        <strong>formFields</strong>
+                        {'{'}
                         {displayFields}
                         {'}'}
                     </p>
