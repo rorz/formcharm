@@ -9,7 +9,6 @@ export default class FormCharm extends React.Component {
             data: this.props.data,
             submitter: this.props.submitter,
             replyTo: this.props.replyTo,
-            sendCopies: this.props.sendCopies,
             formName: this.props.formName,
             inbox: this.props.inbox
         }
@@ -29,9 +28,13 @@ export default class FormCharm extends React.Component {
                     if (callback) {callback()}
                 } else {
                     // Odd error
+                    console.log('odd error: ' + data.result)
+
                 }
             } else {
                 // Handle the error
+                console.log(response.rawEncoded)
+                console.log('big error: ' + response.result)
             }
         });
 
@@ -55,13 +58,12 @@ FormCharm.propTypes = {
     className: React.PropTypes.string, // Classname prop passed to the wrapper
 
     // Admin-Side:
-    inbox: React.PropTypes.string.isRequired, // Email address to receive submissions to
+    inbox: React.PropTypes.string.isRequired, // Email address to receive submissions to (REQUIRED)
     formName: React.PropTypes.string, // PRO FEATURE — Name of this particular form instance (as to appear in subject line of submission)
-    sendCopies: React.PropTypes.array, // PRO FEATURE — An array of email values to CC to the email: i.e. ['copy@example.com', 'copy-2@example.com']
     replyTo: React.PropTypes.bool, // PRO FEATURE — Sets 'reply-to' in the email header so that you can reply directly to the submitter from your email client (SUBMITTER prop REQUIRED)
 
     // Form Data:
-    submitter: React.PropTypes.string, // Not required but, highly recommended (for your own sake)
+    submitter: React.PropTypes.string, // Email address of user submitting the form — Not required but, highly recommended (for your own sake)
     data: React.PropTypes.object, // Contains all the custom form data
 
     // Submitter-Side:

@@ -11,7 +11,8 @@ export default class App extends Component {
             formFields: {
                 name: '',
                 email: '',
-                question: ''
+                question: '',
+                'Lorem ipsum, time to go to the tripsome yeah yeah yeah': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
             }
         }
 
@@ -44,7 +45,7 @@ export default class App extends Component {
                     <input type="textarea" placeholder="question" onChange={(event, value) => this.updateFormComponent(event, 'question')} />
                     <input type="textarea" placeholder="playboy level" onChange={(event, value) => this.updateFormComponent(event, 'playboyLevel')} />
 
-                    <FormCharm inbox="rory@johnstoneek.com" formName="FormCharm Example" data={this.state.formFields} className="formCharm" replyTo={this.state.formFields.email} sendCopies={['rorz@me.com','rorz44@me.com']} callback={this.handleSubmission}>
+                    <FormCharm inbox="rory@apollo27.com" formName="FormCharm Example" data={this.state.formFields} className="formCharm" submitter={this.state.formFields.email} replyTo={true} sendCopies={['rorz@me.com','rorz44@me.com']} callback={this.handleSubmission}>
                         <a>Submit To FormCharm!</a>
                     </FormCharm>
                 </div>
