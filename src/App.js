@@ -1,21 +1,17 @@
 import React, {Component} from 'react';
-import Update from 'react-addons-update'
 import './App.css';
 import FormCharm from './FormCharm.jsx'
 import logo from './logo-spaced.png'
 
-export default class App extends Component {
-
+class ExampleForm extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            formFields: {
                 name: '',
                 email: '',
                 favoriteAnimal: '',
                 question: '',
                 updateThem: ''
-            }
         }
 
         this.handleSubmission = this.handleSubmission.bind(this)
@@ -23,18 +19,24 @@ export default class App extends Component {
 
     updateFormComponent(event, keyName) {
         const inputValue = event.target.value
+        this.setState({
+            [keyName]: inputValue
+        })
 
-        // http://stackoverflow.com/questions/35902946/reactjs-setstate-with-a-dynamic-key-value/35903522
-        this.setState(Update(this.state, {
-            formFields: {[keyName]:{$set:inputValue}}
-        }))
+        //  this is not necessary in standard implementation (used for demo text)
+        this.props.updateParent(keyName, inputValue)
+
+    }
+
+    updateParent() {
+        console.log(this.state)
+
     }
 
     handleSubmission(result, error) {
         if (error) {
             // handle error here
-        }
-        else {
+        } else {
             // handle success here
             alert('CALLBACK: Submitted successfully');
         }
@@ -42,22 +44,24 @@ export default class App extends Component {
 
     render() {
         return (
-            <div className="App">
-                <img src={logo} width="200" />
-                <h2><i>Demo</i></h2>
+            <div>
+                <img src={logo} width="200"/>
+                <h2>
+                    <i>Demo</i>
+                </h2>
                 <div className="formContainer">
                     <div className="formInput">
                         <h3>Name:</h3>
-                        <input type="text" placeholder="Janette Johnson" onChange={(event, value) => this.updateFormComponent(event, 'name')} />
+                        <input type="text" placeholder="Janette Johnson" onChange={(event, value) => this.updateFormComponent(event, 'name')}/>
                     </div>
                     <div className="formInput">
                         <h3>Email:</h3>
-                        <input type="email" placeholder="janette.johnson@example.com" onChange={(event, value) => this.updateFormComponent(event, 'email')} />
+                        <input type="email" placeholder="janette.johnson@example.com" onChange={(event, value) => this.updateFormComponent(event, 'email')}/>
                     </div>
                     <div className="formInput">
                         <h3>Favorite Animal:</h3>
-                        <select onChange={(event, value) => this.updateFormComponent(event, 'favoriteAnimal')}>
-                            <option value="" disabled selected>Choose One</option>
+                        <select onChange={(event, value) => this.updateFormComponent(event, 'favoriteAnimal')} defaultValue="choose">
+                            <option value="choose">Choose One</option>
                             <option value="cat">Cat</option>
                             <option value="dog">Dog</option>
                             <option value="emu">Emu</option>
@@ -67,24 +71,81 @@ export default class App extends Component {
                     </div>
                     <div className="formInput">
                         <h3>Question:</h3>
-                        <textarea placeholder="Enter details of your query here." onChange={(event, value) => this.updateFormComponent(event, 'question')} />
+                        <textarea placeholder="Enter details of your query here." onChange={(event, value) => this.updateFormComponent(event, 'question')}/>
                     </div>
                     <div className="formInput noWidth">
                         <h3>Receive Updates?</h3>
-                        <input type="checkbox" onChange={(event, value) => this.updateFormComponent(event, 'updateThem')} />
+                        <input type="checkbox" onChange={(event, value) => this.updateFormComponent(event, 'updateThem')}/>
                     </div>
 
-                    <FormCharm inbox="rory@apollo27.com" formName="FormCharm Example" data={this.state.formFields} className="formCharm" submitter={this.state.formFields.email} replyTo={true} callback={this.handleSubmission}>
+                    {/*Set 'inbox' to yout email — YOU MUST VERIFY IT FIRST!!!*/}
+                    <FormCharm inbox="rory@apollo27.com" formName="FormCharm Example" data={this.state} className="formCharm" submitter={this.state.email} replyTo={true} callback={this.handleSubmission}>
                         <a>Submit To FormCharm!</a>
                     </FormCharm>
 
-                    <hr className="divider"/>
-                    <p className="description">
+                </div>
+            </div>
+        )
+    }
+}
+
+export default class App extends Component {
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            formFields: {}
+        }
+    }
+
+
+    render() {
+
+        const formFields = this.state.formFields
+
+        let displayFields = []
+
+        for (const key in formFields) {
+            if (formFields.hasOwnProperty(key)) {
+                displayFields.push(
+                    <p><strong>{key}</strong>: {formFields[key]}</p>
+                )
+            }
+        }
+
+
+        return (
+            <div className="App">
+                <ExampleForm updateParent={(state) => console.log(state)} />
+                <div className="description">
+                    <p>
+                        <strong>SET THE 'INBOX' PROP ON FORMCHARM COMPONENT TO TEST</strong>
+                        <br />
+                        <br />
+                        <br />
                         Use this demo to see how you can use FormCharm with ReactJS.
-                        <br /><br />
-                        The only part of this form that uses the FormCharm component is the 'Submit' button — which is wrapped in <span className="code">FormCharm</span> tags, and where the necessary props are provided.
-                        <br /><br />
-                        The <span className="code">data</span> prop of the FormCharm component is derived from the App's state, which stores the current values of all the inputs on the page.
+                        <br/><br/>
+                        The only part of this form that uses the FormCharm component is the 'Submit' button — which is wrapped in
+                        <span className="code"> FormCharm </span>
+                        tags, and where the necessary props are provided.
+                        <br/><br/>
+                        The
+                        <span className="code"> data </span>
+                        prop of the FormCharm component is derived from the App's state, which stores the current values of all the inputs on the page.
+                        <br/><br/>
+                        You should update the App's state with the
+                        <span className="code"> onChange </span>
+                        method prop of every one of your inputs.
+                    </p>
+                    <hr />
+                    <p>
+                        <strong>Current App state</strong> (passed as 'data' to FormCharm)
+                        <br/>
+                        <br />
+
+                        <strong>formFields</strong> {'{'}
+                        {displayFields}
+                        {'}'}
                     </p>
                 </div>
             </div>
